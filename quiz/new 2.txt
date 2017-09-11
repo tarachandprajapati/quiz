@@ -1,0 +1,395 @@
+Notes and Potential Issues
+
+The following notes and warnings highlight missing or conflicting information which caused the validator to perform some guesswork prior to validation, or other things affecting the output below. If the guess or fallback is incorrect, it could make validation results entirely incoherent. It is highly recommended to check these potential issues, and, if necessary, fix them and re-validate the document.
+Warning Unable to Determine Parse Mode!
+
+The validator can process documents either as XML (for document types such as XHTML, SVG, etc.) or SGML (for HTML 4.01 and prior versions). For this document, the information available was not sufficient to determine the parsing mode unambiguously, because:
+
+in Direct Input mode, no MIME Media Type is served to the validator
+No known Document Type could be detected
+No XML declaration (e.g <?xml version="1.0"?>) could be found at the beginning of the document.
+No XML namespace (e.g <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">) could be found at the root of the document.
+As a default, the validator is falling back to SGML mode.
+
+Warning No DOCTYPE found, and unknown root element. Aborting validation.
+
+The DOCTYPE Declaration was not recognized or is missing. This probably means that the Formal Public Identifier contains a spelling error, or that the Declaration is not using correct syntax, or that your document is not using a DOCTYPE Declaration.
+
+Without a DOCTYPE Declaration it is not possible to check the validity of your document. Since the document does not start with the root <html> element, automatic fallback to an HTML document type was not performed, and most of the validation process was aborted: only basic markup syntax was checked.
+
+Learn how to add a doctype to your document from our FAQ, or use the validator's Document Type option to validate your document against a specific Document Type.
+
+Info No Character encoding declared at document level
+
+No character encoding information was found within the document, either in an HTML meta element or an XML declaration. It is often recommended to declare the character encoding in the document itself, especially if there is a chance that the document will be read from or saved to disk, CD, etc.
+
+See this tutorial on character encoding for techniques and explanations.
+
+Info Using Direct Input mode: UTF-8 character encoding assumed
+
+Unlike the “by URI” and “by File Upload” modes, the “Direct Input” mode of the validator provides validated content in the form of characters pasted or typed in the validator's form field. This will automatically make the data UTF-8, and therefore the validator does not need to determine the character encoding of your document, and will ignore any charset information specified.
+
+If you notice a discrepancy in detected character encoding between the “Direct Input” mode and other validator modes, this is likely to be the reason. It is neither a bug in the validator, nor in your document.
+
+↑ TOP
+
+Validation Output: 55 Errors
+
+Error Line 2, Column 1: no document type declaration; will parse without validation
+<Doctype html>
+✉
+The document type could not be determined, because the document had no correct DOCTYPE declaration. The document does not look like HTML, therefore automatic fallback could not be performed, and the document was only checked against basic markup syntax.
+
+Learn how to add a doctype to your document from our FAQ, or use the validator's Document Type option to validate your document against a specific Document Type.
+
+Error Line 2, Column 14: "HTML" is not a member of a group specified for any attribute
+<Doctype html>
+✉
+Warning Line 8, Column 73: NET-enabling start-tag requires SHORTTAG YES
+<script language="JavaScript" src="javascript.js" type="text/javascript"/>
+✉
+For the current document, the validator interprets strings like <FOO /> according to legacy rules that break the expectations of most authors and thus cause confusing warnings and error messages from the validator. This interpretation is triggered by HTML 4 documents or other SGML-based HTML documents. To avoid the messages, simply remove the "/" character in such contexts. NB: If you expect <FOO /> to be interpreted as an XML-compatible "self-closing" tag, then you need to use XHTML or HTML5.
+
+This warning and related errors may also be caused by an unquoted attribute value containing one or more "/". Example: <a href=http://w3c.org>W3C</a>. In such cases, the solution is to put quotation marks around the value.
+
+Error Line 12, Column 49: an attribute value must be a literal unless it contains only name characters
+<meta name="viewport content="width=device-width, initial-scale=1"> 
+✉
+You have used a character that is not considered a "name character" in an attribute value. Which characters are considered "name characters" varies between the different document types, but a good rule of thumb is that unless the value contains only lower or upper case letters in the range a-z you must put quotation marks around the value. In fact, unless you have extreme file size requirements it is a very very good idea to always put quote marks around your attribute values. It is never wrong to do so, and very often it is absolutely necessary.
+
+Error Line 12, Column 66: an attribute specification must start with a name or name token
+<meta name="viewport content="width=device-width, initial-scale=1"> 
+✉
+An attribute name (and some attribute values) must start with one of a restricted set of characters. This error usually indicates that you have failed to add a closing quotation mark on a previous attribute value (so the attribute value looks like the start of a new attribute) or have used an attribute that is not defined (usually a typo in a common attribute name).
+
+Warning Line 58, Column 47: cannot generate system identifier for general entity "nbsp"
+…ref="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp…
+✉
+An entity reference was found in the document, but there is no reference by that name defined. Often this is caused by misspelling the reference name, unencoded ampersands, or by leaving off the trailing semicolon (;). The most common cause of this error is unencoded ampersands in URLs as described by the WDG in "Ampersands in URLs".
+
+Entity references start with an ampersand (&) and end with a semicolon (;). If you want to use a literal ampersand in your document you must encode it as "&amp;" (even inside URLs!). Be careful to end entity references with a semicolon or your entity reference may get interpreted in connection with the following text. Also keep in mind that named entity references are case-sensitive; &Aelig; and &aelig; are different characters.
+
+If this error appears in some markup generated by PHP's session handling code, this article has explanations and solutions to your problem.
+
+Note that in most documents, errors related to entity references will trigger up to 5 separate messages from the Validator. Usually these will all disappear when the original problem is fixed.
+
+Error Line 58, Column 47: general entity "nbsp" not defined and no default entity
+…ref="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Error Line 58, Column 51: reference to entity "nbsp" for which no system identifier could be generated
+…"contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 57: reference to entity "nbsp" for which no system identifier could be generated
+…ctus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 63: reference to entity "nbsp" for which no system identifier could be generated
+…tml">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 69: reference to entity "nbsp" for which no system identifier could be generated
+…ontact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 75: reference to entity "nbsp" for which no system identifier could be generated
+…</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 81: reference to entity "nbsp" for which no system identifier could be generated
+…li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 87: reference to entity "nbsp" for which no system identifier could be generated
+…sp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 93: reference to entity "nbsp" for which no system identifier could be generated
+…sp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 99: reference to entity "nbsp" for which no system identifier could be generated
+…sp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 105: reference to entity "nbsp" for which no system identifier could be generated
+…sp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 111: reference to entity "nbsp" for which no system identifier could be generated
+…sp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 117: reference to entity "nbsp" for which no system identifier could be generated
+…sp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 123: reference to entity "nbsp" for which no system identifier could be generated
+…sp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nb…
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 129: reference to entity "nbsp" for which no system identifier could be generated
+…p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 135: reference to entity "nbsp" for which no system identifier could be generated
+…p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 141: reference to entity "nbsp" for which no system identifier could be generated
+…p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 147: reference to entity "nbsp" for which no system identifier could be generated
+…p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 153: reference to entity "nbsp" for which no system identifier could be generated
+…p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 159: reference to entity "nbsp" for which no system identifier could be generated
+…p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 58, Column 165: reference to entity "nbsp" for which no system identifier could be generated
+…p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 60, Column 34: an attribute value literal can occur in an attribute specification list only after a VI delimiter
+<marquee style=";behavior="scroll" direction="fast-left" onmouseover="this.stop…
+✉
+Have you forgotten the "equal" sign marking the separation between the attribute and its declared value? Typical syntax is attribute="value".
+
+Error Line 84, Column 42: character ";" not allowed in attribute specification list
+…rquee style="font-family:Book Antiqua";behavior="scroll" direction="right" onm…
+✉
+Error Line 104, Column 59: an attribute value literal can occur in an attribute specification list only after a VI delimiter
+…-family:Book Antiqua; behavior="scroll" direction="left" onmouseover="this.sto…
+✉
+Have you forgotten the "equal" sign marking the separation between the attribute and its declared value? Typical syntax is attribute="value".
+
+Error Line 109, Column 92: end tag for element "BR" which is not open
+…ol-xs-12 col-md-10" style="background:lightsalmon;"><li >Events</li></div></br>
+✉
+The Validator found an end tag for the above element, but that element is not currently open. This is often caused by a leftover end tag from an element that was removed during editing, or by an implicitly closed element (if you have an error related to an element being used where it is not allowed, this is almost certainly the case). In the latter case this error will disappear as soon as you fix the original problem.
+
+If this error occurred in a script section of your document, you should probably read this FAQ entry.
+
+Error Line 116, Column 104: end tag for element "BR" which is not open
+…md-10" style="background:lightgreen;"><li >Guests Lectures by-</li></div></br> 
+✉
+The Validator found an end tag for the above element, but that element is not currently open. This is often caused by a leftover end tag from an element that was removed during editing, or by an implicitly closed element (if you have an error related to an element being used where it is not allowed, this is almost certainly the case). In the latter case this error will disappear as soon as you fix the original problem.
+
+If this error occurred in a script section of your document, you should probably read this FAQ entry.
+
+Error Line 122, Column 97: end tag for element "BR" which is not open
+…-12 col-md-10" style="background:lightsalmon;"><li >Initiatives</li></div></br>
+✉
+The Validator found an end tag for the above element, but that element is not currently open. This is often caused by a leftover end tag from an element that was removed during editing, or by an implicitly closed element (if you have an error related to an element being used where it is not allowed, this is almost certainly the case). In the latter case this error will disappear as soon as you fix the original problem.
+
+If this error occurred in a script section of your document, you should probably read this FAQ entry.
+
+Error Line 126, Column 126: end tag for element "BR" which is not open
+…2 col-md-10" style="background:lightgreen;"><li >Play Game</li></div></br> </a>
+✉
+The Validator found an end tag for the above element, but that element is not currently open. This is often caused by a leftover end tag from an element that was removed during editing, or by an implicitly closed element (if you have an error related to an element being used where it is not allowed, this is almost certainly the case). In the latter case this error will disappear as soon as you fix the original problem.
+
+If this error occurred in a script section of your document, you should probably read this FAQ entry.
+
+Error Line 164, Column 56: an attribute value must be a literal unless it contains only name characters
+    <input type="button" value="Check" onclick=validate()>
+✉
+You have used a character that is not considered a "name character" in an attribute value. Which characters are considered "name characters" varies between the different document types, but a good rule of thumb is that unless the value contains only lower or upper case letters in the range a-z you must put quotation marks around the value. In fact, unless you have extreme file size requirements it is a very very good idea to always put quote marks around your attribute values. It is never wrong to do so, and very often it is absolutely necessary.
+
+Error Line 279, Column 58: an attribute value literal can occur in an attribute specification list only after a VI delimiter
+…t-family:Book Antiqua;behavior="scroll" direction="left" onmouseover="this.sto…
+✉
+Have you forgotten the "equal" sign marking the separation between the attribute and its declared value? Typical syntax is attribute="value".
+
+Error Line 291, Column 38: ":20PX" is not a member of a group specified for any attribute
+<div class="container" style="margin":20px 20px 20px 20px; background-color:#f2…
+✉
+Error Line 291, Column 44: "20PX" is not a member of a group specified for any attribute
+…class="container" style="margin":20px 20px 20px 20px; background-color:#f2f2f2…
+✉
+Error Line 291, Column 49: "20PX" is not a member of a group specified for any attribute
+…ass="container" style="margin":20px 20px 20px 20px; background-color:#f2f2f2;">
+✉
+Error Line 291, Column 54: "20PX" is not a member of a group specified for any attribute
+…ass="container" style="margin":20px 20px 20px 20px; background-color:#f2f2f2;">
+✉
+Error Line 291, Column 77: "BACKGROUND-COLOR:" is not a member of a group specified for any attribute
+…ass="container" style="margin":20px 20px 20px 20px; background-color:#f2f2f2;">
+✉
+Error Line 294, Column 45: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/contact/">Contact</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 294, Column 51: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/contact/">Contact</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 295, Column 41: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/about/">About</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 295, Column 47: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/about/">About</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 296, Column 47: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/archives/">Archives</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 296, Column 53: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/archives/">Archives</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 297, Column 51: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/advertising/">Advertise</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 297, Column 57: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/advertising/">Advertise</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 298, Column 57: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/guest-posting/">Guest Posting</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 298, Column 63: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/guest-posting/">Guest Posting</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 299, Column 45: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/license/">License</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 299, Column 51: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/license/">License</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 300, Column 39: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/shop/">Shop</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 300, Column 45: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/shop/">Shop</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 301, Column 60: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/subscription-options/">Subscribe</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.
+
+Info Line 58, Column 46: entity was defined here
+…href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbs…
+Error Line 301, Column 66: reference to entity "nbsp" for which no system identifier could be generated
+        <a href="/subscription-options/">Subscribe</a>&nbsp &nbsp 
+✉
+This is usually a cascading error caused by a an undefined entity reference or use of an unencoded ampersand (&) in an URL or body text. See the previous message for further details.

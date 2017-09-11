@@ -1,0 +1,302 @@
+<!--==========================This website is developed by Tarachand prajapati -nitrr-CS-15115079=================-->
+<html>
+<head>
+<title>BRainSTormeRz !
+</title>
+
+<script language="JavaScript" src="javascript.js" type="text/javascript"/>
+     
+</script>
+<meta charset="utf-8">
+<meta name="viewport content="width=device-width, initial-scale=1"> 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<link rel=stylesheet href="style.css">
+
+<link rel=stylesheet href="slidebar.css">
+<!--==========================This website is developed by Tarachand prajapati -nitrr-CS-15115079=================-->
+
+
+<style>
+body {
+    background-image: url("main background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+</style>
+<!--==========================This website is developed by Tarachand prajapati -nitrr-CS-15115079=================-->
+<script language="javascript">
+var x=document.forms["myForm"].["firstname"].value;
+var y=document.forms["myForm"].["lastname"].value;
+var z=document.forms["myForm"].["adress"].value;
+var w=document.forms["myForm"].["level"].value;
+var p=document.forms["myForm"].["mob"].value;
+var q=document.forms["myForm"].["email"].value;
+var r=document.forms["myForm"].["semester"].value;
+var s=document.forms["myForm"].["college"].value;
+</script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+<!--logo-->
+<!--menu items-->
+<div class="collapse navbar-collapse" id="mainNavBar" style="background-color: #f2f2f2;">
+<ul class="nav navbar-nav">
+<li class="active"><a href="main.html">Home</a></li>
+<li><a href="aboutus.html">About</a></li>
+<li><a href="contactus.html">Contact</a></li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<li><div class="container-fluid"  style="font-family:algerian; margin-left:100px; width=75%" id="autocolor">
+<marquee style=";behavior="scroll" direction="fast-left" onmouseover="this.stop();" onmouseout="this.start();">
+<h1 align=center> A A V A R T A N   2k16  presents  BRainSTormeRz</h1>
+</marquee>
+</div></li>
+<script type="text/javascript">
+(function(){
+	var hexacode = ['#ffff00', '#ff0000', '#00ff00', '#0000ff', '#ffffff'],
+	el = document.getElementById('autocolor').style,
+	counter = -1,
+	hexalen = hexacode.length;
+	function auto(){
+		el.backgroundColor = hexacode[counter = ++counter % hexalen];
+	}
+	setInterval(auto, 400);
+})();
+</script>
+</ul>
+<!--right align-->
+<ul class="nav navbar-nav navbar-right"><li><a href="logout.html">Logout</a></li></ul>
+</div>
+</div >
+</nav>
+<nav class="navbar navbar-inverse">
+<div id="sponsors" style="background-color: #f2f2f2; margin-bottom:15px;">
+<marquee style="font-family:Book Antiqua;behavior="scroll" direction="right" onmouseover="this.stop();" onmouseout="this.start();"> 
+<img src="sponsors logo\4.jpg" ><img src="sponsors logo\6.gif" ><img src="sponsors logo\ad.gif" >
+<img src="sponsors logo\Ambuja1.jpg" ><img src="sponsors logo\CAD.jpg" ><img src="sponsors logo\ceat.jpg" >
+<img src="sponsors logo\amrapali.png">
+<img src="sponsors logo\gl.jpg" ><img src="sponsors logo\edu.jpe" >
+<img src="sponsors logo\ht.jpg" ><img src="sponsors logo\juice.png" ><img src="sponsors logo\konsole.jpg" >
+<img src="sponsors logo\ms.png" ><img src="sponsors logo\midpoint.png" ><img src="sponsors logo\search.png" >
+<img src="sponsors logo\techno.jpg"><img src="sponsors logo\Kreatryx_Logo.png" >
+<img src="sponsors logo\airtel.jpg"><img src="sponsors logo\nrda.jpg" >
+<img src="sponsors logo\blue.png"><img src="sponsors logo\chips1.jpg" >
+<img src="sponsors logo\ola.jpe" ><img src="sponsors logo\robo.png" >
+</marquee>
+</div>
+</nav>
+<div style="background-color: #b2b2b2; width:100%;
+            margin-left:0px; margin-right:0px; 
+            margin-top: 50px;	margin-bottom: 15px;		
+           padding: 10px">
+<h2 style="text-align:center; font-color:yellow;">
+Online Quiz Registration</h2>
+<marquee style="font-family:Book Antiqua;behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"> <h5> Register now!  seats are available!
+</marquee>
+</div>
+<div class="container-fluid" id="wrapper" >
+<div id="left" style="background-color:#f2f2f2; margin-right:30px; font-color:blue;">
+<div class="col-xs-12 col-md-10" style="background:lightsalmon;"><li >Events</li></div></br>
+<table class="table table-striped" >
+<tr><td>October Sky</td></tr> 
+<tr><td>Diabolic Dumper</td></tr> 
+<tr><td>Sherlock holmes</td></tr> 
+<tr><td>House of Cards</td></tr> 
+<tr><td>Prison break</td></tr> </table>
+<div class="col-xs-12 col-md-10" style="background:lightgreen;"><li >Guests Lectures by-</li></div></br> 
+<table class="table table-striped" >
+<tr><td>Sohil Jain</td></tr> 
+<tr><td>Director Sir</td></tr> 
+<tr><td>Mohit Chauhan</td></tr> 
+<tr><td>Aniket Garg</td></tr></table>
+<div class="col-xs-12 col-md-10" style="background:lightsalmon;"><li >Initiatives</li></div></br>
+<table class="table table-striped" > 
+<tr><td>World Environment day</td></tr>
+<tr><td>Engineers day</td></tr></table>
+<a href="TheAviator/index.html"><div class="col-xs-12 col-md-10" style="background:lightgreen;"><li >Play Game</li></div></br> </a>
+</div>
+<div class="center_div" id="middle" style="background-color:#f2f2f2" >
+<!--==========================This website is developed by Tarachand prajapati -nitrr-CS-15115079=================-->
+<form method="post" name="myForm" action="formrecall1.php" id="main form">
+
+
+ <label for="fname">First Name</label>
+ <input type="text" id="fname" name="firstname">
+
+ <label for="lname">Last Name</label>
+ <input type="text" id="lname" name="lastname">
+ 
+  <label for="college">college</label>
+ <input type="text" id="College" name="college">
+ 
+ <label for="semester">Semester</label>
+ <input type="text" id="sem" name="semester">
+
+ <label for="fulladd">Full address</label>
+ <input type="text" id="fulladd" name="address">
+ 
+ <label for="level">Quiz level</label>
+ <select id="level" name="level">
+ <option value="Easy">Easy</option>
+ <option value="Medium">Medium</option>
+ <option value="Difficult">Difficult</option>
+ <option value="Very Difficult">Very Difficult</option>
+ </select>
+ 
+ <label for="mob">Mobile No.</label>
+ <input type="text" id="mob" name="mob" value="+91-">
+
+<label for="email">Email-Id</label>
+<input type="text" id="email" name="email">
+
+    <input type="button" value="Check" onclick=validate()>
+	<script>
+	if{ 
+	(onclick="true")ghhkklli
+	alert("you have filled the form correctly")
+	}
+	</script>
+<input type="submit" value="Submit" name="b1">
+<input type="submit" value="update" name="b1">
+<p class="text-muted">Copyright © The TECHNOCRACY</p>
+  </form>
+</div>
+<div id="right" style="background-color:#f2f2f2; margin-left:100px; font-color:blue;">
+Leader Board Positions
+<table class="table table-striped" >
+<thead><tr>
+<th>Name</th>
+<th>Score</th>
+<th>Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tarachand</td>
+<td>19</td>
+<td>#1</td></tr>
+<tr>
+<td>Arpit</td>
+<td>19</td>
+<td>#2</td>
+</tr>
+<tr><td>Aman</td>
+<td>19</td>
+<td>#3</td>
+</tr>
+<tr>
+<td>Simran</td>
+<td>19</td>
+<td>#4</td></tr>
+<tr>
+<td>Abhishek</td>
+<td>19</td>
+<td>#5</td>
+</tr>
+<tr><td>Vedant</td>
+<td>19</td>
+<td>#6</td>
+</tr>
+<tr>
+<td>Ankit</td>
+<td>19</td>
+<td>#7</td></tr>
+<tr>
+<td>Arpit</td>
+<td>19</td>
+<td>#8</td>
+</tr>
+<tr><td>Aman</td>
+<td>19</td>
+<td>#9</td>
+</tr>
+<tr>
+<td>Simran</td>
+<td>19</td>
+<td>#10</td></tr>
+<tr>
+<td>Abhishek</td>
+<td>19</td>
+<td>#11</td>
+</tr>
+<tr><td>Ankit</td>
+<td>19</td>
+<td>#12</td>
+</tr>
+<tr>
+<td>Ankit</td>
+<td>19</td>
+<td>#13</td></tr>
+<tr>
+<td>Arpit</td>
+<td>19</td>
+<td>#14</td>
+</tr>
+<tr><td>Aman</td>
+<td>19</td>
+<td>#15</td>
+</tr>
+<tr>
+<td>Simran</td>
+<td>19</td>
+<td>#16</td></tr>
+<tr>
+<td>Abhishek</td>
+<td>19</td>
+<td>#17</td>
+</tr>
+<tr><td>Ankit</td>
+<td>19</td>
+<td>#18</td>
+</tr>
+<tr>
+<td>Arpit</td>
+<td>19</td>
+<td>#19</td>
+</tr>
+<tr><td>Aman</td>
+<td>19</td>
+<td>#9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<nav class="navbar navbar-inverse">
+<div id="sponsors" style="background-color: #f2f2f2; margin-bottom:15px;">
+<marquee style="font-family:Book Antiqua;behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"> 
+<img src="sponsors logo\4.jpg"><img src="sponsors logo\6.gif"><img src="sponsors logo\ad.gif">
+<img src="sponsors logo\Ambuja1.jpg"><img src="sponsors logo\CAD.jpg"><img src="sponsors logo\ceat.jpg"><img src="sponsors logo\amrapali.png">
+<img src="sponsors logo\gl.jpg"><img src="sponsors logo\edu.jpe">
+<img src="sponsors logo\ht.jpg"><img src="sponsors logo\juice.png"><img src="sponsors logo\konsole.jpg">
+<img src="sponsors logo\ms.png"><img src="sponsors logo\midpoint.png"><img src="sponsors logo\search.png">
+<img src="sponsors logo\techno.jpg"><img src="sponsors logo\Kreatryx_Logo.png">
+ <img src="sponsors logo\airtel.jpg"><img src="sponsors logo\nrda.jpg">
+<img src="sponsors logo\blue.png"><img src="sponsors logo\chips1.jpg"><img src="sponsors logo\ola.jpe"><img src="sponsors logo\robo.png">
+</marquee>
+</div>
+</nav>
+<div class="container" style="margin":20px 20px 20px 20px; background-color:#f2f2f2;">
+ <footer class="site-footer site-footer-links">
+      <nav>
+        <a href="/contact/">Contact</a>&nbsp &nbsp 
+        <a href="/about/">About</a>&nbsp &nbsp 
+        <a href="/archives/">Archives</a>&nbsp &nbsp 
+        <a href="/advertising/">Advertise</a>&nbsp &nbsp 
+        <a href="/guest-posting/">Guest Posting</a>&nbsp &nbsp 
+        <a href="/license/">License</a>&nbsp &nbsp 
+        <a href="/shop/">Shop</a>&nbsp &nbsp 
+        <a href="/subscription-options/">Subscribe</a>&nbsp &nbsp 
+      </nav>
+    </footer>
+	</div>
+</body>
+</html>
+<!--==========================This website is developed by Tarachand prajapati -nitrr-CS-15115079=================-->

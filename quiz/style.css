@@ -1,0 +1,111 @@
+body {
+    background-image: url("main background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin-left: 0px;
+    background: #5d9ab2 ;
+}
+h3{
+	background-color:lightgreen;
+	text-align:center;
+}
+#header{
+	background-color: #b2b2b2; 
+            margin-left:0px; 
+			margin-right:0px; 
+            margin-top: 50px;	
+			margin-bottom: 15px;		
+         		 padding: 10px
+}
+.container-fluid{
+	padding:7 7 7 7px;
+}
+.container{
+	padding:5 5 5 5px;
+}
+#left{
+	padding:10 10 10 10px;
+}
+#center{
+	padding:10 10 10 10px;
+}
+#right{
+	padding:10 10 10 10px;
+}
+h1{
+	font-family:algerian;
+	font-size:30px;
+	line-height:20px;
+	color:#444444;
+}
+input[type=text], select {
+    width: 90%;
+    padding: 12px 25px;
+    margin: 10 10 10 10px;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+input[type=button] {
+    width: 90%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 10 10 10 10px;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+    background-color: #45a049;
+}
+
+input[type=submit] {
+    width:90%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 10 10 10 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* ==========================This website is developed by Tarachand prajapati -nitrr-CS-15115079================= */
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+label{
+	 margin: 10 10 10 10px; 
+}
+
+}
+img{
+	width: 150px;
+	height: 150px;
+	padding:20px;
+}
+#end_line{
+	margin:20 0 20 0px; 
+	background-color:#f2f2f2;
+}
+#tara{
+	position:relative;
+	left:10%;
+	align:left;
+}
+#arpit{
+	position:relative;
+	align:left;
+	left:10%;
+}
+#mihir{
+	color:blue;
+}
+#sponsors{
+	
+	height:180px;
+}
+
